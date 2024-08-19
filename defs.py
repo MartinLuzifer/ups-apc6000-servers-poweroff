@@ -18,7 +18,7 @@ def ups_powered_type() -> str | None:
         return None
 
 
-def ups_charge() -> int | None:
+def ups_battery_charge() -> int | None:
     try:
         result = subprocess.getoutput(snmp_get_charge)
         persent = int(result[-3:])
@@ -30,6 +30,5 @@ def ups_charge() -> int | None:
 
 
 def append_log(text: str):
-    curr_time = datetime.now()
     with open(file=log_file, mode='a') as f:
-        f.write(f"{curr_time} ==>> {text}")
+        f.write(f"{datetime.now()} ==>> {text}")
